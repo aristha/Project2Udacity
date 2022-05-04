@@ -23,8 +23,19 @@ router.get('/', async (req: Request, res: Response) => {
 router.patch('/:id', 
     requireAuth, 
     async (req: Request, res: Response) => {
-        //@TODO try it yourself
-        res.status(500).send("not implemented")
+        let { id } = req.params;
+        try {
+            const item = await FeedItem.findByPk(id);
+            if (item === null) {
+                res.status(404).send("Feed not found");
+            }
+            if(item.url) {
+                item.url = AWS.getGetSignedUrl(item.url);
+            } 
+            res.send(item);
+        } catch (error) {
+            res.status(500).send("Internal serve error")
+        }
 });
 
 

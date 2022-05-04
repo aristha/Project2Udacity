@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "database-1.cpwotfwixilf.us-east-1.rds.amazonaws.com",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "database": "postgres",
+            "username": "postgres",
+            "name": "newconectPostgre"
+        }
+    ]
+}

@@ -27,7 +27,8 @@
     "pg": "^7.11.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^5.10.0",
-    "sequelize-typescript": "^0.6.11"
+    "sequelize-typescript": "^0.6.11",
+    "ts-node": "^10.7.0"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.33",
@@ -39,7 +40,7 @@
     "chai-http": "^4.3.0",
     "mocha": "^6.2.3",
     "rimraf": "^3.0.2",
-    "ts-node-dev": "^1.1.1",
+    "ts-node-dev": "^1.1.8",
     "tslint": "^5.20.1",
     "typescript": "^3.9.7"
   }
