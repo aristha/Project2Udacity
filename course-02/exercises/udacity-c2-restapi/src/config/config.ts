@@ -1,22 +1,23 @@
 export const config = {
   "dev": {
-    "username": "",
-    "password": "",
-    "database": "",
-    "host": "",
+    "username": process.env.POSTGRESQL_USERNAME,
+    "password": process.env.POSTGRESQL_PASSWORD,
+    "database": process.env.POSTGRESQL_DATABASE,
+    "host": process.env.POSTGRESQL_HOST,
     "dialect": "postgres",
-    "aws_region": "us-east-2",
-    "aws_profile": "default",
-    "aws_media_bucket": "udagram-ruttner-dev"
+    "aws_region": process.env.AWS_REGION,
+    "aws_profile": process.env.AWS_PROFILE,
+    "aws_media_bucket": process.env.AWS_MEDIA_BUCKET,
+    "url_api": process.env.API
   },
   "jwt": {
-    "secret": " "
+    "secret": "Hello word"
   },
   "prod": {
-    "username": "",
-    "password": "",
-    "database": "udagram_prod",
-    "host": "",
+    "username": process.env.POSTGRESQL_USERNAME,
+    "password": process.env.POSTGRESQL_PASSWORD,
+    "database": process.env.POSTGRESQL_DATABASE,
+    "host": process.env.POSTGRESQL_HOST,
     "dialect": "postgres"
   }
 }

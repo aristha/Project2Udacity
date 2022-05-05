@@ -6,6 +6,7 @@ import { IndexRouter } from './controllers/v0/index.router';
 import bodyParser from 'body-parser';
 
 import { V0MODELS } from './controllers/v0/model.index';
+import { deleteLocalFiles, filterImageFromURL } from './util/util';
 
 (async () => {
   await sequelize.addModels(V0MODELS);
@@ -22,7 +23,7 @@ import { V0MODELS } from './controllers/v0/model.index';
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
-
+  
   app.use('/api/v0/', IndexRouter)
 
   // Root URI call
@@ -30,6 +31,7 @@ import { V0MODELS } from './controllers/v0/model.index';
     res.send( "/api/v0/" );
   } );
   
+
 
   // Start the Server
   app.listen( port, () => {
