@@ -9,6 +9,16 @@
             "database": "postgres",
             "username": "postgres",
             "name": "newconectPostgre"
+        },
+        {
+            "previewLimit": 50,
+            "server": "database-udacity.cpwotfwixilf.us-east-1.rds.amazonaws.com",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "database": "postgres",
+            "username": "postgres",
+            "name": "postgresaws"
         }
     ]
 }

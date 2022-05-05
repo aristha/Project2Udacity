@@ -6,7 +6,7 @@ import { FeedItem } from '../feed/models/feed-item.model';
 import { catchError, tap, map } from 'rxjs/operators';
 
 const API_HOST = environment.apiHost;
-
+const JWT_LOCALSTORE_KEY = 'jwt';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,11 +25,14 @@ export class ApiService {
   }
 
   setAuthToken(token) {
+    this.httpOptions.headers.delete('Authorization');
     this.httpOptions.headers = this.httpOptions.headers.append('Authorization', `jwt ${token}`);
     this.token = token;
   }
 
   get(endpoint): Promise<any> {
+    // const token = localStorage.getItem(JWT_LOCALSTORE_KEY);
+    // this.setAuthToken(token);
     const url = `${API_HOST}${endpoint}`;
     const req = this.http.get(url, this.httpOptions).pipe(map(this.extractData));
 

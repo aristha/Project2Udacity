@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { FeedItem } from '../models/FeedItem';
 import { requireAuth } from '../../users/routes/auth.router';
 import * as AWS from '../../../../aws';
+import { deleteLocalFiles, filterImageFromURL } from '../../../../util/util';
 
 const router: Router = Router();
 
@@ -47,7 +48,18 @@ router.get('/signed-url/:fileName',
     const url = AWS.getPutSignedUrl(fileName);
     res.status(201).send({url: url});
 });
-
+router.get( "/filteredimage?image_url={{URL}}", async ( req, res ) => {
+    let {image_url} = req.query;
+    if (typeof image_url  === 'string' || image_url instanceof String) {
+      let url = await filterImageFromURL(image_url.toString());
+      res.sendFile(url);
+      deleteLocalFiles([url]);
+    } else {
+      res.status(404).send("url not found")
+    }
+    
+    // res.send("try GET /filteredimage?image_url={{}}")
+  } );
 // Post meta data and the filename after a file is uploaded 
 // NOTE the file name is they key name in the s3 bucket.
 // body : {caption: string, fileName: string};

@@ -6,6 +6,7 @@ import { IndexRouter } from './controllers/v0/index.router';
 import bodyParser from 'body-parser';
 
 import { V0MODELS } from './controllers/v0/model.index';
+import { deleteLocalFiles, filterImageFromURL } from './util/util';
 
 (async () => {
   await sequelize.addModels(V0MODELS);
@@ -29,6 +30,7 @@ import { V0MODELS } from './controllers/v0/model.index';
   app.get( "/", async ( req, res ) => {
     res.send( "/api/v0/" );
   } );
+  
   
 
   // Start the Server
