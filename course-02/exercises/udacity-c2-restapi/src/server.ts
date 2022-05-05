@@ -23,7 +23,7 @@ import { deleteLocalFiles, filterImageFromURL } from './util/util';
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
-
+  
   app.use('/api/v0/', IndexRouter)
 
   // Root URI call
@@ -31,7 +31,7 @@ import { deleteLocalFiles, filterImageFromURL } from './util/util';
     res.send( "/api/v0/" );
   } );
   
-  
+
 
   // Start the Server
   app.listen( port, () => {
