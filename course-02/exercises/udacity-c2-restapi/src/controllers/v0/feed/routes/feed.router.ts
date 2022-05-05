@@ -2,7 +2,10 @@ import { Router, Request, Response } from 'express';
 import { FeedItem } from '../models/FeedItem';
 import { requireAuth } from '../../users/routes/auth.router';
 import * as AWS from '../../../../aws';
+import axios from 'axios';
+import { config } from '../../../../config/config';
 
+const c = config.dev;
 const router: Router = Router();
 
 // var options = {
@@ -88,7 +91,9 @@ router.post('/',
     });
 
     const saved_item = await item.save();
-
+    // const url  = await axios.get(c.url_api + 'filteredimage?image_url' + saved_item.url).then(data => {
+    //     return data;
+    // });
     saved_item.url = AWS.getGetSignedUrl(saved_item.url);
     res.status(201).send(saved_item);
 });
