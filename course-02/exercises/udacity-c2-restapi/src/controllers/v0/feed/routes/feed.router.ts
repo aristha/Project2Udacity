@@ -5,21 +5,21 @@ import * as AWS from '../../../../aws';
 
 const router: Router = Router();
 
-var options = {
-    host: url,
-    port: 80,
-    path: '/resource?id=foo&bar=baz',
-    method: 'POST'
-  };
+// var options = {
+//     host: url,
+//     port: 80,
+//     path: '/resource?id=foo&bar=baz',
+//     method: 'POST'
+//   };
   
-  http.request(options, function(res) {
-    console.log('STATUS: ' + res.statusCode);
-    console.log('HEADERS: ' + JSON.stringify(res.headers));
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      console.log('BODY: ' + chunk);
-    });
-  }).end();
+//   http.request(options, function(res) {
+//     console.log('STATUS: ' + res.statusCode);
+//     console.log('HEADERS: ' + JSON.stringify(res.headers));
+//     res.setEncoding('utf8');
+//     res.on('data', function (chunk) {
+//       console.log('BODY: ' + chunk);
+//     });
+//   }).end();
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
     const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
