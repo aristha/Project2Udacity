@@ -30,24 +30,19 @@ import { pathToFileURL } from 'url';
 
   app.get( '/filteredimage', async ( req, res ) => {
     let {image_url} = req.query;
-    try {
-      if (typeof image_url  === 'string' || image_url instanceof String) {
+    if (image_url == null || image_url === "") {
+      res.status(400).send("image_url is required")
+    } else {
+      try {
         let url = await filterImageFromURL(image_url.toString());
         res.sendFile(url,() => {
           deleteLocalFiles([url]);
         });
-      } else {
-        res.status(404).send("url not found")
+      } catch (e) {
+        res.status(400).send(e);
       }
-    } catch (e) {
-      console.log(e)
-      res.status(500).send(e);
     }
   } );
-  
-  /**************************************************************************** */
-
-  //! END @TODO1
   
   // Root Endpoint
   // Displays a simple message to the user
